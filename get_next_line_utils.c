@@ -6,7 +6,7 @@
 /*   By: rmouchel <rmouchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 15:13:34 by rmouchel          #+#    #+#             */
-/*   Updated: 2023/05/20 16:49:44 by rmouchel         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:43:52 by rmouchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,24 +61,30 @@ char	*ft_strjoin(const char *s1,const  char *s2)
 	int		i;
 	int		j;
 
-	if (!s1)
-		return (ft_strdup(s2));
-	if (!s2)
+	if (!s1 || !s2)
 		return (NULL);
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
 		return (NULL);
-	j = 0;
 	i = 0;
 	while (s1[i])
-		str[j++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		str[j++] = s2[i++];
-	str[j] = '\0';
-	//free(s1);
+	{
+		str[i] = s1[i];
+		++i;
+	}
+	j = 0;
+	while (s2[j])
+	{
+		str[i] = s2[j];
+		++i;
+		++j;
+	}
+	str[i] = '\0';
 	return (str);
 }
+
+
+
 
 char	*ft_strchr(const char *s, int i)
 {
@@ -92,6 +98,7 @@ char	*ft_strchr(const char *s, int i)
 		return ((char *)s);
 	return (0);
 }
+
 
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
@@ -114,6 +121,47 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
         str[i++] = s[start++];
     str[i] = '\0';
     return str;
+}
+
+void *ft_memmove(void *dst, const void *src, size_t len)
+{
+	size_t i;
+
+	if (!dst && !src)
+		return NULL;
+	if (dst > src)
+	{
+		i = len;
+		while (i > 0)
+		{
+			((char *)dst)[i - 1] = ((char *)src)[i - 1];
+			i--;
+		}
+	}
+	else
+	{
+		i = 0;
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
+	return dst;
+}
+
+char	*ft_strcpy(char *dst, const char *src)
+{
+	size_t i;
+
+	i = 0;
+	while (src[i])
+	{	
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }
 
 

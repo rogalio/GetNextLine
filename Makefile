@@ -1,23 +1,26 @@
-SRCS = get_next_line.c get_next_line_utils.c \
-OBJS = $(SRCS:.c=.o)
+SRCS		:= $(wildcard *.c)
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
-RM = rm -f
+OBJS=		$(SRCS:.c=.o)
 
-NAME = gnl.a
+RM=		rm -f
 
-all: $(NAME)
+CFLAGS=		-g3
+
+NAME=		gnl
+
+CC=		gcc
+
+all:	 $(NAME)
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	$(CC) -o $(NAME) $^
 
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+		$(RM) $(OBJS)
 
-fclean: clean
-	$(RM) $(NAME)
+fclean:		clean
+		$(RM) $(NAME)
 
-re: fclean all
+re:		fclean all
 
-.PHONY: all clean fclean re
+.PHONY:		all clean fclean re bonus
