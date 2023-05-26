@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmouchel <rmouchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 14:01:37 by rmouchel          #+#    #+#             */
-/*   Updated: 2023/05/26 18:58:48 by rmouchel         ###   ########.fr       */
+/*   Created: 2023/05/26 17:41:58 by rmouchel          #+#    #+#             */
+/*   Updated: 2023/05/26 18:59:27 by rmouchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 bool	process_buffer(int fd, char *buf, char **str_vault)
 {
@@ -43,45 +43,26 @@ int	get_newline_pos(char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	buf[BUFFER_SIZE + 1] = "";
+	static char	buf[10000][BUFFER_SIZE + 1] = {{0}};
 	char		*line_to_return;
 	char		*str_vault;
 	int			newline_pos;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
 		return (NULL);
-	str_vault = ft_strdup(buf);
-	if (!process_buffer(fd, buf, &str_vault) && str_vault[0] == '\0')
+	str_vault = ft_strdup(buf[fd]);
+	if (!process_buffer(fd, buf[fd], &str_vault) && str_vault[0] == '\0')
 	{
 		free(str_vault);
 		return (NULL);
 	}
 	newline_pos = get_newline_pos(str_vault);
-	if (ft_strchr(buf, '\n'))
+	if (ft_strchr(buf[fd], '\n'))
 	{
 		line_to_return = ft_substr(str_vault, 0, newline_pos + 1);
-		ft_strcpy(buf, str_vault + newline_pos + 1);
+		ft_strcpy(buf[fd], str_vault + newline_pos + 1);
 		free(str_vault);
 		return (line_to_return);
 	}
 	return (str_vault);
 }
-
-/*
-int main(int argc, char **argv)
-{
-	int fd;
-	char *line;
-
-	//fd = open("test.txt", O_RDONLY);
-	fd = open(argv[1], O_RDONLY);
-	
-	while ((line = get_next_line(fd)))
-	{
-		printf("%s", line);
-		free(line);
-	}
-	
-	return (0);
-}
-*/

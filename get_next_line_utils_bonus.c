@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmouchel <rmouchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 15:13:34 by rmouchel          #+#    #+#             */
-/*   Updated: 2023/05/26 18:54:59 by rmouchel         ###   ########.fr       */
+/*   Created: 2023/05/26 18:03:51 by rmouchel          #+#    #+#             */
+/*   Updated: 2023/05/26 18:56:43 by rmouchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(const char *str)
 {

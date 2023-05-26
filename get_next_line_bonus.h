@@ -1,22 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmouchel <rmouchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 14:02:09 by rmouchel          #+#    #+#             */
-/*   Updated: 2023/05/26 19:00:09 by rmouchel         ###   ########.fr       */
+/*   Created: 2023/05/26 17:15:39 by rmouchel          #+#    #+#             */
+/*   Updated: 2023/05/26 17:34:16 by rmouchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-
-// buffur default size
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 20
-# endif
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stddef.h>
 # include <stdlib.h>
@@ -25,6 +20,11 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdbool.h>
+
+// buffur default size
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 20
+# endif
 
 char	*get_next_line(int fd);
 int		ft_strlen(const char *str);
